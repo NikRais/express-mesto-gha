@@ -17,7 +17,7 @@ module.exports.getUsersById = (req, res) => {
         return res.status(errorCode.NOT_FOUND).send({ message: 'Пользователь по id не найден' });
       }
       if (error instanceof CastError) {
-        return res.status(errorCode.BAD_REQUEST);
+        return res.status(errorCode.BAD_REQUEST).send({ message: 'Передан невалидный id' });
       }
       return res.status(errorCode.INTERNAL_SERVER_ERROR);
     });
