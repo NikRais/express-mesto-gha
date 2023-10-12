@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const userRouter = require('./routes/users');
 const cardRouter = require('./routes/cards');
 
-const NOT_FOUND = require('./utils/serverResponse');
+const errorCode = require('./utils/serverResponse');
 
 const { PORT = 3000 } = process.env;
 
@@ -24,9 +24,7 @@ app.use((req, res, next) => {
 
 app.use('/users', userRouter);
 app.use('/cards', cardRouter);
-app.use('*', (req, res) => {
-  res.status(NOT_FOUND).send({ message: 'Запрашиваемый адрес не найден' });
-});
+app.use('*', (req, res) => res.status(errorCode.NOT_FOUND).send({ message: 'Запрашиваемый адрес не найден' }));
 
 app.listen(PORT, () => {
   console.log(`App listening at port ${PORT}`);

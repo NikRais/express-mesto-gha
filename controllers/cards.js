@@ -1,9 +1,9 @@
 const Card = require('../models/card');
-const { errorsResponse, NOT_FOUND } = require('../utils/serverResponse');
+const { errorsResponse, OK_REQUEST, NOT_FOUND } = require('../utils/serverResponse');
 
 module.exports.getCards = (req, res) => {
   Card.find({})
-    .then((cards) => res.status(200).send(cards))
+    .then((cards) => res.status(OK_REQUEST).send(cards))
     .catch((err) => errorsResponse(err, res));
 };
 
@@ -11,7 +11,7 @@ module.exports.createCard = (req, res) => {
   const { name, link } = req.body;
 
   Card.create({ name, link, owner: req.user._id })
-    .then((card) => res.status(200).send(card))
+    .then((card) => res.status(OK_REQUEST).send(card))
     .catch((err) => errorsResponse(err, res));
 };
 
@@ -21,7 +21,7 @@ module.exports.deleteCard = (req, res) => {
       if (!card) {
         return res.status(NOT_FOUND).send({ message: 'Не удалось найти карточку' });
       }
-      return res.status(200).send(card);
+      return res.status(OK_REQUEST).send(card);
     })
     .catch((err) => errorsResponse(err, res));
 };
@@ -36,7 +36,7 @@ module.exports.likeCard = (req, res) => {
       if (!card) {
         return res.status(NOT_FOUND).send({ message: 'Не удалось найти карточку' });
       }
-      return res.status(200).send(card);
+      return res.status(OK_REQUEST).send(card);
     })
     .catch((err) => errorsResponse(err, res));
 };
@@ -51,7 +51,7 @@ module.exports.dislikeCard = (req, res) => {
       if (!card) {
         return res.status(NOT_FOUND).send({ message: 'Не удалось найти карточку' });
       }
-      return res.status(200).send(card);
+      return res.status(OK_REQUEST).send(card);
     })
     .catch((err) => errorsResponse(err, res));
 };

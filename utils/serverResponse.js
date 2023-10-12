@@ -1,3 +1,4 @@
+const OK_REQUEST = 200;
 const CREATED = 201;
 const BAD_REQUEST = 400;
 const NOT_FOUND = 404;
@@ -21,6 +22,7 @@ const errorsResponse = (err, res) => {
 };
 
 module.exports = {
+  OK_REQUEST,
   CREATED,
   BAD_REQUEST,
   NOT_FOUND,
