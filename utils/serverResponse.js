@@ -3,7 +3,7 @@ const BAD_REQUEST = 400;
 const NOT_FOUND = 404;
 const INTERNAL_SERVER_ERROR = 500;
 
-module.exports.errorsResponse = (err, res) => {
+const errorsResponse = (err, res) => {
   if (err.name === 'CastError') {
     return res
       .status(BAD_REQUEST)
@@ -12,7 +12,7 @@ module.exports.errorsResponse = (err, res) => {
   if (err.name === 'ValidationError') {
     return res
       .status(BAD_REQUEST)
-      .send({ message: 'Переданы некорректные данные.' });
+      .send({ message: 'Ошибка валидации полей' });
   }
 
   return res
@@ -25,4 +25,5 @@ module.exports = {
   BAD_REQUEST,
   NOT_FOUND,
   INTERNAL_SERVER_ERROR,
+  errorsResponse,
 };
