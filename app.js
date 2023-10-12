@@ -1,0 +1,33 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+const userRouter = require('./routes/users');
+const cardRouter = require('./routes/cards');
+
+const { NOT_FOUND } = require('./utils/serverResponse');
+
+const { PORT = 3000 } = process.env;
+
+const app = express();
+app.use(bodyParser.json());
+mongoose.connect('mongodb://127.0.0.1:27017/mestodb');
+
+app.use((req, res, next) => {
+  req.user = { _id: '652780c7d0990763fdd622c3' };
+
+  next();
+});
+
+app.use('/users', userRouter);
+app.use('/cards', cardRouter);
+app.use('*', (req, res) => {
+  res.status(NOT_FOUND).send({ message: 'Запрашиваемый адрес не найден' });
+});
+app.get('/', (req, res) => {
+  console.log(req.headers);
+  return res.send('hello');
+});
+
+app.listen(PORT, () => {
+  console.log(`App listening at port ${PORT}`);
+});
