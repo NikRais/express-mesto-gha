@@ -6,7 +6,7 @@ const cardSchema = new mongoose.Schema({
     type: String,
     minlength: [2, 'Имя карточки должно содержать минимум 2 символа'],
     maxlength: [30, 'Имя карточки может содержать максимум 30 символов'],
-    required: true,
+    required: [true, 'Поле "name" должно быть заполнено'],
   },
   link: {
     type: String,

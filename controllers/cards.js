@@ -1,5 +1,7 @@
 const Card = require('../models/card');
-const { errorsResponse, OK_REQUEST, NOT_FOUND } = require('../utils/serverResponse');
+const {
+  errorsResponse, OK_REQUEST, NOT_FOUND, CREATED,
+} = require('../utils/serverResponse');
 
 module.exports.getCards = (req, res) => {
   Card.find({})
@@ -11,7 +13,7 @@ module.exports.createCard = (req, res) => {
   const { name, link } = req.body;
 
   Card.create({ name, link, owner: req.user._id })
-    .then((card) => res.status(OK_REQUEST).send(card))
+    .then((card) => res.status(CREATED).send(card))
     .catch((err) => errorsResponse(err, res));
 };
 

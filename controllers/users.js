@@ -11,7 +11,7 @@ module.exports.getUsers = (req, res) => {
 module.exports.getUsersById = (req, res) => {
   User.findById(req.params.userId)
     .orFail(new Error('NotFound'))
-    .then((user) => res.status(errorCode.OK_REQUEST).send(user))
+    .then((user) => res.send(user))
     .catch((error) => {
       if (error.message === 'NotFound') {
         return res.status(errorCode.NOT_FOUND).send({ message: 'Пользователь по id не найден' });
@@ -26,7 +26,7 @@ module.exports.getUsersById = (req, res) => {
 module.exports.createUser = (req, res) => {
   const { name, about, avatar } = req.body;
   User.create({ name, about, avatar })
-    .then((user) => res.status(errorCode.OK_REQUEST).send({
+    .then((user) => res.status(errorCode.CREATED).send({
       _id: user._id,
       name: user.name,
       about: user.about,
