@@ -4,14 +4,14 @@ const { celebrate, Joi } = require('celebrate');
 module.exports.signIn = celebrate({
   body: Joi.object().keys({
     email: Joi.string().required().email(),
-    password: Joi.string().required().min(6).max(30),
+    password: Joi.string().required(),
   }),
 });
 
 /* Валидация регистрации */
 module.exports.signUp = celebrate({
   body: Joi.object().keys({
-    avatar: Joi.string().regex(/^https?:\/\/(www\.)?[\w-._~:/?#[\]@!$&'()*+,;=]*#?`/),
+    avatar: Joi.string().regex(/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)$/),
     email: Joi.string().required().email(),
     password: Joi.string().required(),
     name: Joi.string().min(2).max(30),
@@ -37,7 +37,7 @@ module.exports.updateUserValidation = celebrate({
 /* Валидация обновления аватара */
 module.exports.updateAvatarValidation = celebrate({
   body: Joi.object().keys({
-    avatar: Joi.string().required().regex(/^https?:\/\/(www\.)?[\w-._~:/?#[\]@!$&'()*+,;=]*#?`/),
+    avatar: Joi.string().required().regex(/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)$/),
   }),
 });
 
@@ -45,7 +45,7 @@ module.exports.updateAvatarValidation = celebrate({
 module.exports.createCardValidation = celebrate({
   body: Joi.object().keys({
     name: Joi.string().required().min(2).max(30),
-    link: Joi.string().required().regex(/^https?:\/\/(www\.)?[\w-._~:/?#[\]@!$&'()*+,;=]*#?`/),
+    link: Joi.string().required().regex(/^https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&//=]*)$/),
   }),
 });
 
