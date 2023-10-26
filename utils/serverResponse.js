@@ -1,31 +1,19 @@
 const OK_REQUEST = 200;
 const CREATED = 201;
 const BAD_REQUEST = 400;
+const UNAUTHORIZED = 401;
+const FORBIDDEN = 403;
 const NOT_FOUND = 404;
+const CONFLICT = 409;
 const INTERNAL_SERVER_ERROR = 500;
-
-const errorsResponse = (err, res) => {
-  if (err.name === 'CastError') {
-    return res
-      .status(BAD_REQUEST)
-      .send({ message: `Ошибка ${BAD_REQUEST}.` });
-  }
-  if (err.name === 'ValidationError') {
-    return res
-      .status(BAD_REQUEST)
-      .send({ message: 'Ошибка валидации полей' });
-  }
-
-  return res
-    .status(INTERNAL_SERVER_ERROR)
-    .send({ message: `Ошибка сервера ${INTERNAL_SERVER_ERROR}` });
-};
 
 module.exports = {
   OK_REQUEST,
   CREATED,
   BAD_REQUEST,
+  UNAUTHORIZED,
+  FORBIDDEN,
   NOT_FOUND,
+  CONFLICT,
   INTERNAL_SERVER_ERROR,
-  errorsResponse,
 };

@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
 const { Schema } = require('mongoose');
+const isURL = require('validator/lib/isURL');
 
 const cardSchema = new mongoose.Schema({
   name: {
@@ -11,10 +12,14 @@ const cardSchema = new mongoose.Schema({
   link: {
     type: String,
     required: true,
+    validate: {
+      validator: (link) => isURL(link),
+      message: 'Введите URL адрес',
+    },
   },
   owner: {
     type: Schema.Types.ObjectId,
-    required: true,
+    required: [true, 'Поле должно быть заполнено'],
     ref: 'user',
   },
   likes: {
