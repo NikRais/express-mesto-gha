@@ -49,7 +49,7 @@ module.exports.likeCard = (req, res, next) => {
   )
     .then((card) => {
       if (!card) {
-        return res.status(NotFoundError).send({ message: 'Не удалось найти карточку' });
+        return next(new NotFoundError('Не удалось найти карточку'));
       }
       return res.status(serverResponse.OK_REQUEST).send(card);
     })
@@ -64,7 +64,7 @@ module.exports.dislikeCard = (req, res, next) => {
   )
     .then((card) => {
       if (!card) {
-        return res.status(NotFoundError).send({ message: 'Не удалось найти карточку' });
+        return next(new NotFoundError('Не удалось найти карточку'));
       }
       return res.status(serverResponse.OK_REQUEST).send(card);
     })
