@@ -1,6 +1,15 @@
 [![Tests](../../actions/workflows/tests-13-sprint.yml/badge.svg)](../../actions/workflows/tests-13-sprint.yml) [![Tests](../../actions/workflows/tests-14-sprint.yml/badge.svg)](../../actions/workflows/tests-14-sprint.yml)
-# Проект Mesto фронтенд + бэкенд
- https://github.com/NikRais/express-mesto-gha
+# Project №6 ["Mesto Backend"](https://github.com/NikRais/express-mesto-gha)
+
+This is the Backend part of [Project №5 (Mesto Auth)](https://github.com/NikRais/react-mesto-auth), an ineractive page where users can add or delete pictures, change their profile info and like cards.
+
+## Technologies
+
++ `Node.js` 
++ `Express`
++ `MongoDB`
++ `Mongoose`
++ `Postman`
 
 ## Директории
 
